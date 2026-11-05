@@ -8,7 +8,7 @@ admin screens and an audit log.
 ```
 contexa/
 ├── server/   Cloudflare Workers API (Hono, D1, Durable Objects, R2, KV, Cron)
-├── app/      Mobile app (Expo / React Native, iOS 16+ and Android 11+, Hebrew RTL and English)
+├── app/      Mobile app (Expo / React Native, iOS 16.4+ and Android 11+, Hebrew RTL and English)
 └── scripts/  e2e-protocol.ts: an end-to-end protocol check against a running server
 ```
 

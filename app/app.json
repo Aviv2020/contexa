@@ -19,7 +19,6 @@
     "ios": {
       "bundleIdentifier": "app.contexa",
       "supportsTablet": false,
-      "deploymentTarget": "16.0",
       "infoPlist": {
         "NSFaceIDUsageDescription": "Contexa uses Face ID to unlock your encrypted messages.",
         "NSCameraUsageDescription": "Take photos to share with your team. Photos stay inside Contexa and are not saved to your gallery.",
@@ -32,7 +31,6 @@
     },
     "android": {
       "package": "app.contexa",
-      "minSdkVersion": 30,
       "adaptiveIcon": {
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundColor": "#0F3D3E"
@@ -53,6 +51,17 @@
       "supportsRTL": true
     },
     "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "16.4"
+          },
+          "android": {
+            "minSdkVersion": 30
+          }
+        }
+      ],
       "expo-router",
       "expo-localization",
       [
