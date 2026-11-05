@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Image, Modal, Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
 import * as Sharing from 'expo-sharing';
-import Pdf from 'react-native-pdf';
+import { PdfView } from './PdfView';
 import type { MessagePayload } from '../../crypto/e2e';
 import { dataUri, loadMedia, withTempPlainFile } from '../../media/files';
 import { useSession } from '../../state/session';
@@ -89,7 +89,7 @@ export function MediaViewer({ file, onClose }: { file: FileMeta | null; onClose:
             <Image source={{ uri }} style={{ width, height: height - 140 }} resizeMode="contain" />
           </ScrollView>
         ) : isPdf ? (
-          <Pdf source={{ uri }} style={{ flex: 1, width, backgroundColor: '#222' }} trustAllCerts={false} />
+          <PdfView base64={uri.slice(uri.indexOf(',') + 1)} />
         ) : (
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 8 }}>
             <Text style={{ fontSize: 48 }}>📄</Text>
