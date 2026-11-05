@@ -1,0 +1,36 @@
+{
+  // Contexa API — Cloudflare Workers (see spec §7)
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "contexa-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "placement": { "mode": "smart" },
+  "vars": {
+    "APP_NAME": "Contexa",
+    // true only in dev: OTP codes are returned in the API response instead of being sent by SMS
+    "OTP_DEV_MODE": "false",
+    "INFORU_SENDER": "Contexa",
+    "INFORU_API_URL": "https://capi.inforu.co.il/api/v2/SMS/SendSms",
+    "EXPO_PUSH_URL": "https://exp.host/--/api/v2/push/send"
+  },
+  // Secrets (wrangler secret put): JWT_SECRET, OTP_HMAC_SECRET, BLOB_URL_SECRET, INFORU_USER, INFORU_TOKEN
+  "d1_databases": [
+    // Central identity DB: users, orgs, memberships, devices
+    { "binding": "CENTRAL_DB", "database_name": "contexa-central", "database_id": "00000000-0000-0000-0000-000000000001", "migrations_dir": "migrations/central" },
+    // Organisation data (every row carries org_id). See README "Per-org databases".
+    { "binding": "ORG_DB", "database_name": "contexa-org", "database_id": "00000000-0000-0000-0000-000000000002", "migrations_dir": "migrations/org" }
+  ],
+  "r2_buckets": [{ "binding": "FILES", "bucket_name": "contexa-files" }],
+  "kv_namespaces": [{ "binding": "CONFIG_KV", "id": "00000000000000000000000000000003" }],
+  "durable_objects": {
+    "bindings": [
+      { "name": "OTP", "class_name": "OtpDO" },
+      { "name": "USER_HUB", "class_name": "UserHubDO" },
+      { "name": "RATE_LIMITER", "class_name": "RateLimiterDO" }
+    ]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["OtpDO", "UserHubDO", "RateLimiterDO"] }],
+  "triggers": { "crons": ["17 2 * * *"] },
+}

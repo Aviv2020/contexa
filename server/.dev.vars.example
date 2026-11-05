@@ -1,0 +1,3 @@
+JWT_SECRET=dev-jwt-secret-change-me
+OTP_HMAC_SECRET=dev-otp-secret-change-me
+BLOB_URL_SECRET=dev-blob-secret-change-me

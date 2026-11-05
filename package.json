@@ -1,0 +1,9 @@
+{
+  "name": "contexa",
+  "private": true,
+  "scripts": {
+    "test": "npm --prefix server test && npm --prefix app test",
+    "typecheck": "npm --prefix server run typecheck && npm --prefix app run typecheck",
+    "e2e": "node --experimental-strip-types scripts/e2e-protocol.ts"
+  }
+}

@@ -1,0 +1,9 @@
+node_modules/
+.wrangler/
+.dev.vars
+.expo/
+dist/
+ios/
+android/
+*.log
+.DS_Store

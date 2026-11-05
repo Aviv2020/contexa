@@ -1,0 +1,91 @@
+{
+  "expo": {
+    "name": "Contexa",
+    "slug": "contexa",
+    "scheme": "contexa",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0F3D3E"
+    },
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "ios": {
+      "bundleIdentifier": "app.contexa",
+      "supportsTablet": false,
+      "deploymentTarget": "16.0",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Contexa uses Face ID to unlock your encrypted messages.",
+        "NSCameraUsageDescription": "Take photos to share with your team. Photos stay inside Contexa and are not saved to your gallery.",
+        "NSPhotoLibraryUsageDescription": "Choose photos to share with your team.",
+        "CFBundleAllowMixedLocalizations": true
+      },
+      "config": {
+        "usesNonExemptEncryption": true
+      }
+    },
+    "android": {
+      "package": "app.contexa",
+      "minSdkVersion": 30,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundColor": "#0F3D3E"
+      },
+      "permissions": [
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT",
+        "CAMERA"
+      ],
+      "blockedPermissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ],
+      "allowBackup": false
+    },
+    "extra": {
+      "apiUrl": "https://api.contexa.app",
+      "supportsRTL": true
+    },
+    "plugins": [
+      "expo-router",
+      "expo-localization",
+      [
+        "expo-sqlite",
+        {
+          "useSQLCipher": true
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": "Contexa uses Face ID to unlock your encrypted messages."
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Contexa uses Face ID to unlock your encrypted messages."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "Take photos to share with your team. Photos stay inside Contexa.",
+          "photosPermission": "Choose photos to share with your team."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#0F3D3E"
+        }
+      ]
+    ]
+  }
+}
